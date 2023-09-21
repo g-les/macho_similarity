@@ -33,8 +33,8 @@ Exazmple Single File Output
 ```
 python3 lief_macho_bulk_hashing.py -f iContact.pkg 
 	Target File: 	iContact.pkg
-	File MD5: 		b0611b1df7f8516ad495cd2621d273b9
-	Sig Name: 		mac
+	File MD5: 	b0611b1df7f8516ad495cd2621d273b9
+	Sig Name: 	mac
 	Dylib Hash: 	e78081f55c33da0ffae6ea2c9d31808d
 	Import Hash: 	7705c5a62a40e30f792aa3e0eace755d
 	Export Hash: 	7f3b75c82e3151fff6c0a55b51cd5b94
