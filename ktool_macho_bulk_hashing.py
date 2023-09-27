@@ -112,20 +112,23 @@ def macho_hashing(target):
 
 	#Parse Entitlements
 		entitlement_list = []
-		entitlement_xml = parsed_sig.get('Entitlements')
-		parsed_xml = ET.fromstring(entitlement_xml)
+		if parsed_sig.get('Entitlements'):
+			entitlement_xml = parsed_sig.get('Entitlements')
+			parsed_xml = ET.fromstring(entitlement_xml)
 
-		for array_item in parsed_xml.iter('array'):
-			request = array_item.findall('string')
-			for i in request:
-				entitlement_list.append(i.text.lower())
+			for array_item in parsed_xml.iter('array'):
+				request = array_item.findall('string')
+				for i in request:
+					entitlement_list.append(i.text.lower())
 
-		for key_item in parsed_xml.iter('key'):
-			entitlement_list.append(key_item.text.lower())
+			for key_item in parsed_xml.iter('key'):
+				entitlement_list.append(key_item.text.lower())
 
-		entitlement_list = sorted(entitlement_list)
-		entitlement_list = list(dict.fromkeys(entitlement_list))
-		ent_hash = md5(",".join(entitlement_list).encode()).hexdigest()
+			entitlement_list = sorted(entitlement_list)
+			entitlement_list = list(dict.fromkeys(entitlement_list))
+			ent_hash = md5(",".join(entitlement_list).encode()).hexdigest()
+		else:
+			ent_hash = "No Entitlements"
 	else:
 		sig_idenfitier = "Not Signed"
 		ent_hash = "Not Signed"
