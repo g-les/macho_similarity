@@ -1,2 +1,3 @@
 lief==0.12.3
 k2l==1.3.0
+binary-refinery==0.6.11
