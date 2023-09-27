@@ -101,14 +101,12 @@ def macho_hashing(target):
 	parsed_macho = machometa()
 	parsed_sig = parsed_macho.parse_signature(ktoolimage)
 	if parsed_sig:
-		is_adhoc = parsed_sig.get('AdHocSigned')
 		sig_idenfitier = parsed_sig.get('SignatureIdentifier')
-
-		if is_adhoc:
+		if parsed_sig.get('AdHocSigned'):
 			str_index = sig_idenfitier.rfind('-')
-			sig_idenfitier = sig_idenfitier[:str_index]
+			sig_name = sig_idenfitier[:str_index]
 		else:
-			sig_idenfitier = sig_idenfitier
+			sig_name = sig_idenfitier
 
 	#Parse Entitlements
 		entitlement_list = []
@@ -130,11 +128,11 @@ def macho_hashing(target):
 		else:
 			ent_hash = "No Entitlements"
 	else:
-		sig_idenfitier = "Not Signed"
+		sig_name = "Not Signed"
 		ent_hash = "Not Signed"
 	target_macho.close()
 
-	sig_list = [target,file_hash,sig_idenfitier,dylib_hash,import_hash,exphash,ent_hash]
+	sig_list = [target,file_hash,sig_name,dylib_hash,import_hash,exphash,ent_hash]
 	return sig_list
 
 if __name__ == "__main__":
