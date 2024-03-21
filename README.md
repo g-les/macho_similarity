@@ -7,6 +7,7 @@ The goal is to parse batch of Macho files to try and mine them for similarity ba
 
 I hope this can be a POC of some sort to eventually plug into other tooling to get used to create easier and faster pivots between Macho malware samples instead of more time intensive ventures like analyzing strings or disassembling or sandbox output 
 
+For further implementation details and psuedocode, please see [implementation.md](/implementation.md)
 
 ## Usage 
 
